@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <title>Index - Medilab Bootstrap Template</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .aspect-ratio-16-9 {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      }
+      .aspect-ratio-16-9 iframe,
+      .aspect-ratio-16-9 img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* Initial state for fade effect */
+      .fade-content {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      /* When content is visible */
+      .fade-content.visible {
+        opacity: 1;
+      }
+      .sidebar-links li a {
+        display: block;
+        padding: 10px;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .sidebar-links li a.active {
+        color: #1d4ed8; /* Tailwind's text-blue-600 */
+      }
+
+      .sidebar-links li a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -2px; /* Adjust to align with the border */
+        height: 100%;
+        width: 3px;
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+      }
+
+      .sidebar-links li a.active::before {
+        background-color: #1d4ed8; /* Tailwind's text-blue-600 */
+      }
+      .relative.group .underline {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: transparent;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        transform: scaleX(0);
+      }
+
+      .relative.group:hover .underline,
+      .relative.group.active .underline {
+        background-color: #1d4ed8; /* Tailwind's text-blue-600 */
+        transform: scaleX(1);
+      }
+
+      .relative.group.active a {
+        color: #1d4ed8; /* Tailwind's text-blue-600 */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="text-white text-sm sticky top-0 z-10">
+      <!-- Contact Links Lists -->
+      <div class="bg-blue-600 w-full py-1 links-lists">
+        <div class="container flex mx-auto">
+          <div class="w-full flex gap-4 justify-center sm:justify-start">
+            <div class="flex items-center space-x-1">
+              <i class="fas fa-envelope"></i>
+              <span>contact@example.com</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <i class="fas fa-phone"></i>
+              <span>+1 5589 55488 55</span>
+            </div>
+          </div>
+          <div class="sm:flex items-center space-x-6 text-lg hidden">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i
+                class="fa-brands fa-twitter hover:text-gray-200 hover:scale-110 transition-transform duration-300"
+              ></i>
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i
+                class="fa-brands fa-facebook hover:text-gray-200 hover:scale-110 transition-transform duration-300"
+              ></i>
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i
+                class="fa-brands fa-instagram hover:text-gray-200 hover:scale-110 transition-transform duration-300"
+              ></i>
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i
+                class="fa-brands fa-linkedin hover:text-gray-200 hover:scale-110 transition-transform duration-300"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navbar -->
+      <nav class="font-nav bg-white">
+        <div class="container mx-auto flex items-center justify-between py-4">
+          <div class="text-3xl font-heading font-bold text-gray-700">
+            <a href="#">Medilab</a>
+          </div>
+          <div class="flex gap-5 items-center justify-between">
+            <!-- Desktop Navigation Menu (Hidden on smaller screens) -->
+            <ul class="hidden md:flex space-x-8 text-base text-blue-900">
+              <li class="relative group">
+                <a href="#home" class="hover:text-blue-600">Home</a>
+                <div class="underline"></div>
+              </li>
+              <li class="relative group">
+                <a href="#about" class="hover:text-blue-600">About</a>
+                <div class="underline"></div>
+              </li>
+              <li class="relative group">
+                <a href="#services" class="hover:text-blue-600">Services</a>
+                <div class="underline"></div>
+              </li>
+              <li class="relative group">
+                <a href="#departments" class="hover:text-blue-600"
+                  >Departments</a
+                >
+                <div class="underline"></div>
+              </li>
+              <li class="relative group">
+                <a href="#doctors" class="hover:text-blue-600">Doctors</a>
+                <div class="underline"></div>
+              </li>
+              <li class="relative group">
+                <a href="#" class="hover:text-blue-600">
+                  Dropdown <i class="fas fa-chevron-down"></i>
+                </a>
+                <div
+                  class="absolute left-0 w-full h-[2px] mt-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                ></div>
+                <ul
+                  class="absolute left-0 w-40 bg-white border border-gray-200 rounded-md shadow-lg hidden group-hover:block"
+                >
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      >Option 1</a
+                    >
+                  </li>
+                  <li class="relative group">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Option 2 <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                    <ul
+                      class="submenu absolute left-full ml-[2px] top-0 mt-0 w-40 bg-white border border-gray-200 rounded-md shadow-lg hidden"
+                    >
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                          >Sub Option 1</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                          >Sub Option 2</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                          >Sub Option 3</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                          >Sub Option 4</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      >Option 3</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="relative group">
+                <a href="#contact" class="hover:text-blue-600">Contact</a>
+                <div class="underline"></div>
+              </li>
+            </ul>
+            <!-- Appointment Button -->
+            <a
+              href="#"
+              class="px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-700"
+              >Make an Appointment</a
+            >
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden block" onclick="togglePopupMenu()">
+              <i class="fa-solid fa-bars text-black text-3xl"></i>
+            </button>
+          </div>
+          <!-- Popup Menu -->
+          <div
+            id="popupMenu"
+            class="flex fixed w-full h-full top-0 left-0 bg-black bg-opacity-30 z-50 justify-center items-center text-blue-900 text-lg hidden"
+          >
+            >
+            <div
+              class="flex flex-col bg-white w-[90%] h-[85%] py-10 px-10 space-y-6 overflow-y-auto rounded-md"
+            >
+              <button
+                onclick="togglePopupMenu()"
+                class="absolute top-5 right-5 text-2xl text-white"
+              >
+                ✕
+              </button>
+              <a href="#" class="hover:text-blue-600">Home</a>
+              <a href="#" class="hover:text-blue-600">About</a>
+              <a href="#" class="hover:text-blue-600">Services</a>
+              <a href="#" class="hover:text-blue-600">Departments</a>
+              <a href="#" class="hover:text-blue-600">Doctors</a>
+              <div class="relative group">
+                <a
+                  href="#"
+                  class="hover:text-blue-600 flex items-center w-full justify-between"
+                >
+                  Dropdown
+                  <i
+                    class="fas fa-chevron-down bg-blue-600 text-white p-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
+                    onclick="toggleDropdown(event, 'dropdownMenu')"
+                  ></i>
+                </a>
+
+                <!-- Dropdown Menu -->
+                <div
+                  id="dropdownMenu"
+                  class="w-full bg-white border border-gray-200 rounded-md shadow-lg hidden mt-2"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >Option 1</a
+                  >
+
+                  <!-- Option 2 with Sub-options -->
+                  <div>
+                    <a
+                      href="#"
+                      class="md:block px-4 py-2 text-gray-700 hover:bg-gray-100 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(event, 'subDropdown')"
+                    >
+                      Option 2
+                      <i
+                        class="fas fa-chevron-down bg-blue-600 text-white p-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
+                        onclick="toggleDropdown(event, 'subDropdown')"
+                      ></i>
+                    </a>
+                    <div
+                      id="subDropdown"
+                      class="w-[95%] mx-auto bg-white border border-gray-200 rounded-md shadow-lg hidden"
+                    >
+                      <a
+                        href="#"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >Sub Option 1</a
+                      >
+                      <a
+                        href="#"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >Sub Option 2</a
+                      >
+                    </div>
+                  </div>
+
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >Option 3</a
+                  >
+                </div>
+              </div>
+              <a href="#" class="hover:text-blue-600">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home">
+      <div
+        class="bg-cover bg-center h-auto w-full"
+        style="background-image: url('./img/hero-bg.jpg')"
+        data-aos="fade-in"
+      >
+        <div
+          class="container md:py-40 py-10 w-full h-full flex flex-col justify-center"
+        >
+          <div class="mb-20">
+            <h1 class="text-5xl font-heading font-bold text-gray-700">
+              WELCOME TO MEDILAB
+            </h1>
+            <p class="text-2xl text-gray-600">
+              We are team of talented designers making websites with Bootstrap
+            </p>
+          </div>
+          <div class="flex flex-col md:flex-row w-full items-center">
+            <div
+              class="bg-blue-600 text-white p-5 mr-5 rounded-lg shadow-lg md:max-w-md w-full mx-auto"
+            >
+              <h1 class="text-4xl font-heading font-bold mb-10">
+                Why Choose Medilab?
+              </h1>
+              <p class="mb-10">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
+                aute irure dolor in reprehenderit Asperiores dolores sed et.
+                Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
+                optio ad corporis.
+              </p>
+              <a
+                href="#"
+                class="w-[40%] mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center"
+              >
+                Learn More <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+            <div class="max-w-7xl mx-auto py-12">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <!-- Card 1 -->
+                <div
+                  class="bg-white bg-opacity-55 rounded-lg shadow-lg p-5 text-center"
+                >
+                  <div class="text-blue-500 text-4xl mb-6">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-700 mb-6">
+                    Corporis voluptates officia eiusmod
+                  </h3>
+                  <p class="text-gray-600">
+                    Consequuntur sunt aut quasi enim aliquam quae harum pariatur
+                    laboris nisi ut aliquip
+                  </p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                  class="bg-white bg-opacity-55 rounded-lg shadow-lg p-6 text-center"
+                >
+                  <div class="text-blue-500 text-4xl mb-6">
+                    <i class="fas fa-gem"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-700 mb-6">
+                    Ullamco laboris ladore pan
+                  </h3>
+                  <p class="text-gray-600">
+                    Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt
+                  </p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                  class="bg-white bg-opacity-55 rounded-lg shadow-lg p-6 text-center"
+                >
+                  <div class="text-blue-500 text-4xl mb-6">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-700 mb-6">
+                    Labore consequatur incidid dolore
+                  </h3>
+                  <p class="text-gray-600">
+                    Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut
+                    maiores omnis facere
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-5 container py-20 items-center"
+      >
+        <!-- Image with Play Button -->
+        <div class="relative inline-block">
+          <img src="./img/about.jpg" alt="Doctors" />
+          <button
+            onclick="openModal(0)"
+            class="absolute inset-0 flex items-center justify-center"
+          >
+            <div
+              class="w-20 h-20 bg-white bg-opacity-70 rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110"
+            >
+              <i class="fa-solid fa-play text-blue-900 text-xl"></i>
+            </div>
+          </button>
+        </div>
+
+        <!-- Modal -->
+        <div
+          id="videoModal"
+          class="fixed inset-0 bg-black bg-opacity-80 z-[10000] flex items-center justify-center hidden"
+          onclick="closeModal(event)"
+        >
+          <div
+            class="bg-white rounded-lg overflow-hidden shadow-lg w-full md:w-9/12 lg:w-10/12 xl:w-9/12 2xl:w-3/4"
+            onclick="event.stopPropagation()"
+          >
+            <div class="aspect-ratio-16-9" id="modalContent">
+              <!-- Content will be dynamically inserted here -->
+            </div>
+            <button
+              onclick="closeModal()"
+              class="absolute top-0 right-0 m-4 text-white text-2xl bg-black px-3 py-2"
+            >
+              &times;
+            </button>
+            <button
+              onclick="showPreviousContent()"
+              class="absolute left-0 top-1/2 transform -translate-y-1/2 m-4 text-white text-2xl bg-black px-3 py-2"
+            >
+              &#10094;
+            </button>
+            <button
+              onclick="showNextContent()"
+              class="absolute right-0 top-1/2 transform -translate-y-1/2 m-4 text-white text-2xl bg-black px-3 py-2"
+            >
+              &#10095;
+            </button>
+          </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto p-8">
+          <h1 class="text-4xl font-bold text-gray-700 mb-2 font-heading">
+            About Us
+          </h1>
+          <p class="text-sm text-gray-600 mb-8">
+            Dolor iure expedita id fuga asperiores qui sunt consequatur minima.
+            Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam
+            itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis
+            veritatis asperiores placeat.
+          </p>
+          <div class="flex items-start mb-8">
+            <i class="fas fa-flask text-4xl text-blue-600 mr-4"></i>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-700 mb-1">
+                Ullamco laboris nisi ut aliquip consequat
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Magni facilis facilis repellendus cum excepturi quaerat
+                praesentium libre trade
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start mb-8">
+            <i class="fas fa-pump-medical text-4xl text-blue-600 mr-4"></i>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-700 mb-1">
+                Magnam soluta odio exercitationem reprehenderit
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Quo totam dolorum at pariatur aut distinctio dolorum laudantium
+                illo direna pasata redi
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <i class="fas fa-heart-broken text-4xl text-blue-600 mr-4"></i>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-700 mb-1">
+                Voluptatem et qui exercitationem
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Et velit et eos maiores est tempora et quos dolorem autem
+                tempora incidunt maxime veniam
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="bg-gray-200 py-20">
+      <div class="container grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div
+          class="bg-white rounded-lg shadow-lg p-6 text-center relative w-full"
+        >
+          <!-- Icon Container with fixed width and height -->
+          <div
+            class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+          >
+            <i class="fas fa-user-md text-xl"></i>
+          </div>
+          <!-- Number and Text -->
+          <div class="mt-5 text-3xl font-bold mb-5">85</div>
+          <div class="text-gray-600">Doctors</div>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-lg p-6 text-center relative w-full md:mt-0 mt-10"
+        >
+          <div class="flex justify-center mb-4">
+            <div
+              class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+            >
+              <i class="fas fa-hospital text-2xl"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold mb-5">18</div>
+          <div class="text-gray-600">Departments</div>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-lg p-6 text-center relative w-full md:mt-0 mt-10"
+        >
+          <div class="flex justify-center mb-4">
+            <div
+              class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+            >
+              <i class="fas fa-flask text-2xl"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold mb-5">12</div>
+          <div class="text-gray-600">Research Labs</div>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-lg p-6 text-center relative w-full md:mt-0 mt-10"
+        >
+          <div class="flex justify-center mb-4">
+            <div
+              class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+            >
+              <i class="fas fa-award text-2xl"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold mb-5">150</div>
+          <div class="text-gray-600">Awards</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="container py-20">
+        <!-- Title -->
+        <div class="text-center mb-20">
+          <h1 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+            Services
+          </h1>
+          <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+            <div class="flex-grow h-px bg-gray-400"></div>
+            <div class="w-24 h-1 bg-blue-600"></div>
+            <div class="flex-grow h-px bg-gray-400"></div>
+          </div>
+          <p class="text-gray-600">
+            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+            consectetur velit
+          </p>
+        </div>
+        <!-- Responsive Grid Container -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div
+            class="bg-white p-8 border py-16 md:py-20 text-center w-full mx-auto hover:bg-blue-500 transition duration-300 group"
+          >
+            <div class="relative inline-block mb-5">
+              <div
+                class="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-2 translate-y-2"
+              ></div>
+              <div
+                class="relative bg-blue-500 group-hover:bg-white p-4 rounded-lg transition duration-300"
+              >
+                <i
+                  class="fas fa-heartbeat text-white text-2xl md:text-3xl transition duration-300 group-hover:text-blue-500"
+                ></i>
+              </div>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-gray-600 mb-5 group-hover:text-white transition duration-300"
+            >
+              Nesciunt Mete
+            </h2>
+            <p
+              class="text-gray-600 mt-2 text-sm md:text-base leading-7 group-hover:text-white"
+            >
+              Provident nihil minus qui consequatur non omnis maiores. Eos
+              accusantium minus dolores iure perferendis tempore et consequatur.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 border py-16 md:py-20 text-center w-full mx-auto hover:bg-blue-500 transition duration-300 group"
+          >
+            <div class="relative inline-block mb-5">
+              <div
+                class="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-2 translate-y-2"
+              ></div>
+              <div
+                class="relative bg-blue-500 group-hover:bg-white p-4 rounded-lg transition duration-300"
+              >
+                <i
+                  class="fas fa-pills text-white text-2xl md:text-3xl transition duration-300 group-hover:text-blue-500"
+                ></i>
+              </div>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-gray-600 mb-5 group-hover:text-white transition duration-300"
+            >
+              Eosle Commodi
+            </h2>
+            <p
+              class="text-gray-600 mt-2 text-sm md:text-base leading-7 group-hover:text-white"
+            >
+              Ut autem aut autem non a. Sint sint sit facilis nam iusto sint.
+              Libero corrupti neque eum hic non ut nesciunt dolorem
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 border py-16 md:py-20 text-center w-full mx-auto hover:bg-blue-500 transition duration-300 group"
+          >
+            <div class="relative inline-block mb-5">
+              <div
+                class="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-2 translate-y-2"
+              ></div>
+              <div
+                class="relative bg-blue-500 group-hover:bg-white p-4 rounded-lg transition duration-300"
+              >
+                <i
+                  class="fas fa-user-md text-white text-2xl md:text-3xl transition duration-300 group-hover:text-blue-500"
+                ></i>
+              </div>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-gray-600 mb-5 group-hover:text-white transition duration-300"
+            >
+              Ledo Markt
+            </h2>
+            <p
+              class="text-gray-600 mt-2 text-sm md:text-base leading-7 group-hover:text-white"
+            >
+              Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus
+              ea aut. Vel qui id voluptas adipisci eos earum corrupti.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 border py-16 md:py-20 text-center w-full mx-auto hover:bg-blue-500 transition duration-300 group"
+          >
+            <div class="relative inline-block mb-5">
+              <div
+                class="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-2 translate-y-2"
+              ></div>
+              <div
+                class="relative bg-blue-500 group-hover:bg-white p-4 rounded-lg transition duration-300"
+              >
+                <i
+                  class="fas fa-dna text-white text-2xl md:text-3xl transition duration-300 group-hover:text-blue-500"
+                ></i>
+              </div>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-gray-600 mb-5 group-hover:text-white transition duration-300"
+            >
+              Asperiores Commodit
+            </h2>
+            <p
+              class="text-gray-600 mt-2 text-sm md:text-base leading-7 group-hover:text-white"
+            >
+              Non et temporibus minus omnis sed dolor esse consequatur.
+              Cupiditate sed error ea fuga sit provident adipisci neque.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 border py-16 md:py-20 text-center w-full mx-auto hover:bg-blue-500 transition duration-300 group"
+          >
+            <div class="relative inline-block mb-5">
+              <div
+                class="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-2 translate-y-2"
+              ></div>
+              <div
+                class="relative bg-blue-500 group-hover:bg-white p-4 rounded-lg transition duration-300"
+              >
+                <i
+                  class="fas fa-file-medical-alt text-white text-2xl md:text-3xl transition duration-300 group-hover:text-blue-500"
+                ></i>
+              </div>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-gray-600 mb-5 group-hover:text-white transition duration-300"
+            >
+              Dolori Architecto
+            </h2>
+            <p
+              class="text-gray-600 mt-2 text-sm md:text-base leading-7 group-hover:text-white"
+            >
+              Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque
+              non et debitis iure. Corrupti recusandae ducimus enim.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 border py-16 md:py-20 text-center w-full mx-auto hover:bg-blue-500 transition duration-300 group"
+          >
+            <div class="relative inline-block mb-5">
+              <div
+                class="absolute inset-0 bg-blue-200 rounded-lg transform translate-x-2 translate-y-2"
+              ></div>
+              <div
+                class="relative bg-blue-500 group-hover:bg-white p-4 rounded-lg transition duration-300"
+              >
+                <i
+                  class="fas fa-heartbeat text-white text-2xl md:text-3xl transition duration-300 group-hover:text-blue-500"
+                ></i>
+              </div>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-gray-600 mb-5 group-hover:text-white transition duration-300"
+            >
+              Nesciunt Mete
+            </h2>
+            <p
+              class="text-gray-600 mt-2 text-sm md:text-base leading-7 group-hover:text-white"
+            >
+              Provident nihil minus qui consequatur non omnis maiores. Eos
+              accusantium minus dolores iure perferendis tempore et consequatur.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section>
+      <div class="container py-10">
+        <!-- Title -->
+        <div class="text-center mb-20">
+          <h1 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+            Appointment
+          </h1>
+          <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+            <div class="flex-grow h-px bg-gray-400"></div>
+            <div class="w-24 h-1 bg-blue-600"></div>
+            <div class="flex-grow h-px bg-gray-400"></div>
+          </div>
+          <p class="text-gray-600">
+            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+            consectetur velit
+          </p>
+        </div>
+
+        <form action="#" method="post" role="form">
+          <div class="flex flex-wrap -mx-2 mb-5">
+            <div class="w-full md:w-1/3 px-2 mb-4">
+              <input
+                type="text"
+                name="name"
+                class="w-full px-4 py-3 border rounded focus:outline-none focus:border-blue-500"
+                id="name"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="w-full md:w-1/3 px-2 mb-4">
+              <input
+                type="email"
+                name="email"
+                class="w-full px-4 py-3 border rounded focus:outline-none focus:border-blue-500"
+                id="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="w-full md:w-1/3 px-2 mb-4">
+              <input
+                type="tel"
+                name="phone"
+                class="w-full px-4 py-3 border rounded focus:outline-none focus:border-blue-500"
+                id="phone"
+                placeholder="Your Phone"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-wrap -mx-2 mb-5">
+            <div class="w-full md:w-1/3 px-2 mb-4">
+              <input
+                type="datetime-local"
+                name="date"
+                class="w-full px-4 py-3 border rounded focus:outline-none focus:border-blue-500"
+                id="date"
+                placeholder="Appointment Date"
+                required
+              />
+            </div>
+            <div class="w-full md:w-1/3 px-2 mb-4">
+              <select
+                name="department"
+                id="department"
+                class="w-full px-4 py-3 border rounded focus:outline-none focus:border-blue-500 bg-white"
+                required
+              >
+                <option value="">Select Department</option>
+                <option value="Department 1">Department 1</option>
+                <option value="Department 2">Department 2</option>
+                <option value="Department 3">Department 3</option>
+              </select>
+            </div>
+            <div class="w-full md:w-1/3 px-2 mb-4">
+              <select
+                name="doctor"
+                id="doctor"
+                class="w-full px-4 py-3 border rounded focus:outline-none focus:border-blue-500 bg-white"
+                required
+              >
+                <option value="">Select Doctor</option>
+                <option value="Doctor 1">Doctor 1</option>
+                <option value="Doctor 2">Doctor 2</option>
+                <option value="Doctor 3">Doctor 3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-5">
+            <textarea
+              name="message"
+              rows="5"
+              class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+              placeholder="Message (Optional)"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 mx-auto flex"
+          >
+            Make an Appointment
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments">
+      <!-- Title -->
+      <div class="text-center mt-20">
+        <h1 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+          Departments
+        </h1>
+        <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+          <div class="flex-grow h-px bg-gray-400"></div>
+          <div class="w-24 h-1 bg-blue-600"></div>
+          <div class="flex-grow h-px bg-gray-400"></div>
+        </div>
+        <p class="text-gray-600">
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+          consectetur velit
+        </p>
+      </div>
+
+      <div class="container flex flex-col md:flex-row mt-10 mb-40">
+        <!-- Sidebar -->
+        <div
+          class="w-full md:w-1/4 h-full border-b md:border-b-0 md:border-r border-gray-200"
+        >
+          <ul class="space-y-3 justify-between department sidebar-links">
+            <li id="cardiology-tab">
+              <a
+                class="font-bold text-gray-800 hover:text-blue-600 active"
+                href="#"
+                >Cardiology</a
+              >
+            </li>
+            <li id="neurology-tab">
+              <a class="font-bold text-gray-800 hover:text-blue-600" href="#"
+                >Neurology</a
+              >
+            </li>
+            <li id="hepatology-tab">
+              <a class="font-bold text-gray-800 hover:text-blue-600" href="#"
+                >Hepatology</a
+              >
+            </li>
+            <li id="pediatrics-tab">
+              <a class="font-bold text-gray-800 hover:text-blue-600" href="#"
+                >Pediatrics</a
+              >
+            </li>
+            <li id="eye-care-tab">
+              <a class="font-bold text-gray-800 hover:text-blue-600" href="#"
+                >Eye Care</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- Main Content -->
+        <div
+          class="w-full md:w-3/4 h-full px-6 flex flex-col md:flex-row"
+          id="main-content"
+        >
+          <!-- Content will be dynamically updated here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Doctor Sections -->
+    <section id="doctors">
+      <!-- Title -->
+      <div class="text-center mt-20">
+        <h1 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+          Doctors
+        </h1>
+        <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+          <div class="flex-grow h-px bg-gray-400"></div>
+          <div class="w-24 h-1 bg-blue-600"></div>
+          <div class="flex-grow h-px bg-gray-400"></div>
+        </div>
+        <p class="text-gray-600">
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+          consectetur velit
+        </p>
+      </div>
+
+      <div
+        class="container mx-auto mt-20 mb-40 grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
+        <!-- Card 1 -->
+        <div
+          class="bg-white p-6 rounded-lg shadow-md flex items-center transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
+        >
+          <img
+            alt="Portrait of Walter White, Chief Medical Officer"
+            class="w-24 h-24 rounded-full mr-6"
+            src="./img/doctors/doctors-1.jpg"
+          />
+          <div>
+            <h2 class="text-2xl font-bold text-gray-700 font-heading">
+              Walter White
+            </h2>
+            <p class="text-gray-600 mb-2">Chief Medical Officer</p>
+            <hr class="mb-4 w-[60px]" />
+            <p class="text-gray-600 mb-4">
+              Explicabo voluptatem mollitia et repellat qui dolorem quasi
+            </p>
+            <div class="flex space-x-3">
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-xing"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-facebook"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-instagram"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-linkedin"> </i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div
+          class="bg-white p-6 rounded-lg shadow-md flex items-center transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
+        >
+          <img
+            alt="Portrait of Sarah Jhonson, Anesthesiologist"
+            class="w-24 h-24 rounded-full mr-6"
+            src="./img/doctors/doctors-2.jpg"
+          />
+          <div>
+            <h2 class="text-2xl font-bold text-gray-600 font-heading">
+              Sarah Jhonson
+            </h2>
+            <p class="text-gray-600 mb-2">Anesthesiologist</p>
+            <hr class="mb-4 w-[60px]" />
+            <p class="text-gray-600 mb-4">
+              Aut maiores voluptates amet et quis praesentium qui senda para
+            </p>
+            <div class="flex space-x-3">
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-xing"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-facebook"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-instagram"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-linkedin"> </i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="bg-white p-6 rounded-lg shadow-md flex items-center transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
+        >
+          <img
+            alt="Portrait of William Anderson, Cardiology"
+            class="w-24 h-24 rounded-full mr-6"
+            src="./img/doctors/doctors-3.jpg"
+          />
+          <div>
+            <h2 class="text-2xl font-bold text-gray-600 font-heading">
+              William Anderson
+            </h2>
+            <p class="text-gray-600 mb-2">Cardiology</p>
+            <hr class="mb-4 w-[60px]" />
+            <p class="text-gray-600 mb-4">
+              Quisquam facilis cum velit laborum corrupti fuga rerum quia
+            </p>
+            <div class="flex space-x-3">
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-xing"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-facebook"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-instagram"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-linkedin"> </i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div
+          class="bg-white p-6 rounded-lg shadow-md flex items-center transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
+        >
+          <img
+            alt="Portrait of Amanda Jepson, Neurosurgeon"
+            class="w-24 h-24 rounded-full mr-6"
+            src="./img/doctors/doctors-4.jpg"
+          />
+          <div>
+            <h2 class="text-2xl font-bold text-gray-600 font-heading">
+              Amanda Jepson
+            </h2>
+            <p class="text-gray-600 mb-2">Neurosurgeon</p>
+            <hr class="mb-4 w-[60px]" />
+            <p class="text-gray-600 mb-4">
+              Dolorum tempora officiis odit laborum officiis et et accusamus
+            </p>
+            <div class="flex space-x-3">
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-xing"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-facebook"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-instagram"> </i>
+              </a>
+              <a class="text-gray-500 hover:text-gray-700" href="#">
+                <i class="fab fa-linkedin"> </i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions Section -->
+    <section class="bg-gray-100 py-20">
+      <!-- Title -->
+      <div class="text-center mb-20">
+        <h1 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+          Frequently Asked Questions
+        </h1>
+        <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+          <div class="flex-grow h-px bg-gray-400"></div>
+          <div class="w-24 h-1 bg-blue-600"></div>
+          <div class="flex-grow h-px bg-gray-400"></div>
+        </div>
+        <p class="text-gray-600">
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+          consectetur velit
+        </p>
+      </div>
+      <div class="container md:px-40 px-4">
+        <div class="bg-blue-600 text-white p-4 rounded-lg mb-5">
+          <h2 class="text-lg font-semibold">
+            Non consectetur a erat nam at lectus urna duis?
+          </h2>
+          <p class="text-base mt-2">
+            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id
+            volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna
+            fringilla urna porttitor rhoncus dolor purus non.
+          </p>
+        </div>
+        <div id="faq-container" class="space-y-2"></div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section>
+      <div class="container mx-auto py-12">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-2/5 p-6">
+            <h2 class="text-4xl font-bold text-gray-700 mb-4 font-heading">
+              Testimonials
+            </h2>
+            <p class="text-gray-600">
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore
+              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident.
+            </p>
+          </div>
+          <div class="md:w-3/5">
+            <div id="content"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section>
+      <!-- Title -->
+      <div class="text-center mb-20 mt-20">
+        <h2 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+          Gallery
+        </h2>
+        <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+          <div class="flex-grow h-px bg-gray-400"></div>
+          <div class="w-24 h-1 bg-blue-600"></div>
+          <div class="flex-grow h-px bg-gray-400"></div>
+        </div>
+        <p class="text-gray-600">
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+          consectetur velit
+        </p>
+      </div>
+      <div class="mx-auto p-4">
+        <div
+          id="imageGrid"
+          class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-1"
+        ></div>
+      </div>
+
+      <!-- Modal Structure -->
+      <div
+        id="imageModal"
+        class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden"
+      >
+        <div>
+          <img
+            id="modalImage"
+            src=""
+            alt=""
+            class="max-w-full max-h-full transition-transform duration-500"
+          />
+          <span
+            onclick="closeGalleryModal()"
+            class="absolute top-0 right-0 mt-2 mr-2 text-2xl cursor-pointer text-white bg-black px-2 rounded-lg"
+            >&times;</span
+          >
+          <button
+            onclick="prevImage()"
+            id="prevButton"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 m-4 text-white text-2xl bg-black px-3 py-2"
+          >
+            &#10094;
+          </button>
+          <button
+            onclick="nextImage()"
+            id="nextButton"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 m-4 text-white text-2xl bg-black px-3 py-2"
+          >
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <!-- Title -->
+      <div class="text-center mb-20 mt-20">
+        <h1 class="text-4xl font-light text-gray-600 mb-5 font-heading">
+          Contact
+        </h1>
+        <div class="flex items-center w-[200px] max-w-md mx-auto mb-5">
+          <div class="flex-grow h-px bg-gray-400"></div>
+          <div class="w-24 h-1 bg-blue-600"></div>
+          <div class="flex-grow h-px bg-gray-400"></div>
+        </div>
+        <p class="text-gray-600">
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+          consectetur velit
+        </p>
+      </div>
+
+      <!-- Map Section -->
+      <div class="w-full h-96">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3868.2341457088887!2d96.12540327520964!3d16.850453783948083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c195357ede6a39%3A0x2578df713e3b85c7!2sBuilding%2019%2C%20MICT%20Park!5e1!3m2!1sen!2smm!4v1730598960781!5m2!1sen!2smm"
+          width="100%"
+          height="400"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <!-- Form Section -->
+      <div class="container mx-auto py-20">
+        <div class="flex flex-wrap">
+          <!-- Contact Information -->
+          <div class="w-full md:w-1/3">
+            <div class="flex items-start mb-8">
+              <div
+                class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+              >
+                <i class="fas fa-map-marker-alt text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-lg font-bold text-gray-700 font-heading">
+                  Location
+                </h4>
+                <p class="text-gray-600">
+                  Building 19, MICT Park, Rangoon, MY 535022
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start mb-8">
+              <div
+                class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+              >
+                <i class="fas fa-phone-alt text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-lg font-bold text-gray-700 font-heading">
+                  Call Us
+                </h4>
+                <p class="text-gray-600">+1 5589 55488 55</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+              >
+                <i class="fas fa-envelope text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-lg font-bold text-gray-700 font-heading">
+                  Email Us
+                </h4>
+                <p class="text-gray-600">info@example.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="w-full md:w-2/3 md:mt-0 mt-10 md:pl-10 pl-0">
+            <form action="#" method="POST" class="space-y-4">
+              <div class="flex space-x-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  class="w-1/2 p-3 border border-gray-300 rounded"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  class="w-1/2 p-3 border border-gray-300 rounded"
+                />
+              </div>
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                class="w-full p-3 border border-gray-300 rounded"
+              />
+              <textarea
+                name="message"
+                placeholder="Message"
+                class="w-full p-3 border border-gray-300 rounded h-32"
+              ></textarea>
+              <button
+                type="submit"
+                class="bg-blue-500 text-white px-6 py-3 rounded-full flex mx-auto"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-100 py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex md:flex-row flex-col">
+          <!-- Medilab Section -->
+          <div class="md:w-full lg:w-[30%] mb-6 md:mb-0 leading-10 text-left">
+            <h2 class="text-2xl font-bold text-gray-600 font-heading mb-4">
+              Medilab
+            </h2>
+            <p class="text-gray-600">
+              A108 Adam Street <br />
+              New York, NY 535022
+            </p>
+            <p class="text-gray-600 mt-2">
+              <strong>Phone:</strong> +1 5589 55488 55
+            </p>
+            <p class="text-gray-600">
+              <strong>Email:</strong> info@example.com
+            </p>
+            <div class="flex mt-4 space-x-4">
+              <a href="#" class="text-gray-600 hover:text-gray-800">
+                <div
+                  class="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-full"
+                >
+                  <i class="fab fa-twitter"></i>
+                </div>
+              </a>
+              <a href="#" class="text-gray-600 hover:text-gray-800">
+                <div
+                  class="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-full"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </div>
+              </a>
+              <a href="#" class="text-gray-600 hover:text-gray-800">
+                <div
+                  class="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-full"
+                >
+                  <i class="fab fa-instagram"></i>
+                </div>
+              </a>
+              <a href="#" class="text-gray-600 hover:text-gray-800">
+                <div
+                  class="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-full"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Grouped Links Section -->
+          <div
+            class="md:w-full lg:mt-0 md:mt-5 lg:w-[70%] grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10 text-sm"
+          >
+            <div class="w-full mb-6 md:mb-0">
+              <h2
+                class="text-xl font-bold text-gray-600 font-heading mb-4 md:ml-2 ml-0"
+              >
+                Useful Links
+              </h2>
+              <ul>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600">Home</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >About us</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Services</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Terms of service</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Privacy policy</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="w-full mb-6 md:mb-0">
+              <h2
+                class="text-xl font-bold text-gray-600 font-heading mb-4 md:ml-2 ml-0"
+              >
+                Our Services
+              </h2>
+              <ul>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Web Design</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Web Development</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Product Management</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Marketing</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Graphic Design</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="w-full mb-6 md:mb-0">
+              <h2
+                class="text-xl font-bold text-gray-600 font-heading mb-4 md:ml-2 ml-0"
+              >
+                Hic solutasetp
+              </h2>
+              <ul>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Molestiae accusamus iure</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Excepturi dignissimos</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Suscipit distinctio</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Dilecta</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Sit quas consectetur</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="w-full mb-6 md:mb-0">
+              <h2
+                class="text-xl font-bold text-gray-600 font-heading mb-4 md:ml-2 ml-0"
+              >
+                Nobis illum
+              </h2>
+              <ul>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Ipsam</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Laudantium dolorum</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Dinera</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Trodela</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-blue-600 text-gray-600"
+                    >Flexo</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 border-t border-gray-300 pt-4 text-center text-sm">
+          <p class="text-gray-600">
+            &copy; Copyright <strong>Medilab</strong>. All Rights Reserved
+          </p>
+          <p class="text-gray-600">
+            Designed by
+            <a href="#" class="text-blue-600 hover:underline">SelfMade</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Up Button -->
+    <div
+      id="scrollToTopButton"
+      class="w-10 h-10 bg-blue-500 flex items-center justify-center rounded-md fixed bottom-[20px] z-[100000] right-[20px] cursor-pointer opacity-0 transition-opacity duration-300"
+    >
+      <i class="fas fa-arrow-up text-white"></i>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
